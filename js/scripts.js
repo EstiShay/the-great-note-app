@@ -4,18 +4,21 @@ function Note (noteTitle, noteText) {
   this.noteText = noteText;
   this.doneStatus = false;
 }
-function AllContent() {
+function arrayofNotes() {
   this.allNotes = [];
 }
 
-AllContent.prototype.changeStatus = function(ourNote) {
-  allNotes.forEach(function(aNote) {
-    if (ourNote.noteTitle === aNote.noteTitle) {
-      aNote.doneStatus = true;
-    }
-  })
-}
+ Note.prototype.changeStatus = function() {
+   this.doneStatus = true;
+ }
 
+// arrayofNotes.prototype.changeStatus = function(ourNote) {
+//   allNotes.forEach(function(aNote) {
+//     if (ourNote.noteTitle === aNote.noteTitle) {
+//       aNote.doneStatus = true;
+//     }
+//   })
+// }
 function appendNotes(note) {
   $(".wrapper").append('<div class="panel panel">' +
   '<div class="panel-heading">' +
@@ -26,15 +29,16 @@ function appendNotes(note) {
       '<h4>Note Details: </h4>' +
 //      '<div class="details">' +
         '<p>' + note.noteText + '</p>' +
-         '<input id="' + note.noteTitle + '" class="done-button" type="button"  value="Archive">' +
+         '<input id="' + note.noteTitle + '" class="btn done-button" type="button"  value="Archive">' +
       '</div>' +
     '</div>');
-}
+};
 //UI Logic
 $(function(){
   var modal = document.getElementById("myModal");
   var btn = document.getElementById("newNoteButton");
   var span = document.getElementsByClassName("close")[0];
+  var allContent = new arrayofNotes();
 
   btn.onclick = function() {
     modal.style.display = "block";
@@ -54,6 +58,9 @@ $(function(){
 
     var newNote = new Note(newNoteTitle, newNoteText);
     appendNotes(newNote);
+    allContent.allNotes.push(newNote);
+    console.log(allContent.allNotes);
+
     button.onclick = function() {
         modal.style.display = "none";
     }
@@ -61,14 +68,17 @@ $(function(){
     $("textarea#newNoteDescription").val('');
    event.preventDefault();
 
+   $(".done-button").click(function() {
+     var currentNoteId = $(this)[0].id;
+     console.log($(this)[0].id);
+     allContent.allNotes.forEach(function(note) {
+       if (note.noteTitle === currentNoteId) {
+         note.changeStatus();
+       }
+       console.log(note.doneStatus);
+     });
  });
 
-  // $(".done-button").click(function() {
-  //   console.log($(this)[0].noteTitle);
-  //   var aNote = $(this)[0].noteTitle;
-  //   aNote.changeStatus();
-  //   console.log(aNote.changeStatus);
-  //   console.log(aNote.noteTitle);
-  // });
+  });
 
 });
