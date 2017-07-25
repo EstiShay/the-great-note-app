@@ -26,3 +26,12 @@
   grid-template-columns: repeat(3,1fr);
   grid-gap: 10px;
 }
+.panel-body {
+  border: 2px solid blue;
+  text-align: center;
+}
+.panel-heading {
+  border: 2px solid blue;
+  padding: 2px;
+  text-align: center;
+}
