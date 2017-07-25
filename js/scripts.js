@@ -10,14 +10,6 @@ function arrayofNotes() {
  Note.prototype.changeStatus = function() {
    this.doneStatus = true;
  }
-
-// arrayofNotes.prototype.changeStatus = function(ourNote) {
-//   allNotes.forEach(function(aNote) {
-//     if (ourNote.noteTitle === aNote.noteTitle) {
-//       aNote.doneStatus = true;
-//     }
-//   })
-// }
 //UI Logic
 $(function(){
   var modal = document.getElementById("myModal");
@@ -39,9 +31,6 @@ $(function(){
       checklistModal.style.display = "none";
     }
   }
-  button.onclick = function() {
-        modal.style.display = "none";
-  }
 
   var checklistModal = document.getElementById("checklistModal");
   var checklistButton = document.getElementById("newChecklistButton");
@@ -54,10 +43,6 @@ $(function(){
   checklistSpan.onclick = function() {
     checklistModal.style.display = "none";
   }
-  checklistClose.onclick = function() {
-    checklistModal.style.display = "none";
-  }
-
 
   function appendNotes(note) {
     $(".wrapper").append('<div class="panel panel">' +
@@ -65,9 +50,7 @@ $(function(){
       '<h4>' + note.noteTitle + '</h4>' +
     '</div>' +
     '<div class="panel-body">' +
-  //    '<div class="detail-reveal">' +
         '<h4>Note Details: </h4>' +
-  //      '<div class="details">' +
           '<p>' + note.noteText + '</p>' +
            '<input id="' + note.noteTitle + '" class="btn done-button" type="button"  value="Archive">' +
         '</div>' +
@@ -82,7 +65,6 @@ $(function(){
     appendNotes(newNote);
     allContent.allNotes.push(newNote);
 
-
     $("input#newNoteTitle").val('');
     $("textarea#newNoteDescription").val('');
    event.preventDefault();
@@ -95,5 +77,13 @@ $(function(){
        }
      });
    });
+   modal.style.display = "none";
  });
+ $("form#newChecklist").submit(function(event) {
+   event.preventDefault();
+   var newCheckListTitle = $("input#newChecklistTitle").val();
+   var newCheckListText = $("input#newChecklistDescription").val();
+   console.log(newCheckListTitle,newCheckListText);
+ });
+  checklistModal.style.display = "none";
 });
