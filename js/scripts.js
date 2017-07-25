@@ -17,8 +17,7 @@ function appendNotes(note) {
 //      '<div class="details">' +
         note.noteText +
       '</div>' +
-    //  '<input id="' + newPet.petName + '" class="adopt-button" type="button" name="adoption-status" value="Adopt Me">' +
-'</div>');
+    '</div>');
 }
 //UI Logic
 $(function(){
@@ -37,7 +36,6 @@ $(function(){
           modal.style.display = "none";
       }
   }
-
 $("form#newNote").submit(function(event){
   var newNoteTitle = $("input#newNoteTitle").val();
   var newNoteText = $("input#newNoteDescription").val();
