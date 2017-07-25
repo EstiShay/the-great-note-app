@@ -39,14 +39,14 @@ $(function(){
   function appendNotes(note) {
     $(".wrapper").append('<div class="panel panel">' +
     '<div class="panel-heading">' +
-      '<h4>' + note.noteTitle + '</h4>' +
+      '<h3>' + note.noteTitle + '</h3>' +
     '</div>' +
     '<div class="panel-body">' +
   //    '<div class="detail-reveal">' +
         '<h4>Note Details: </h4>' +
   //      '<div class="details">' +
           '<p>' + note.noteText + '</p>' +
-           '<input id="' + note.noteTitle + '" class="done-button" type="button"  value="Archive">' +
+           '<input id="' + note.noteTitle + '" class="btn done-button" type="button"  value="Archive">' +
         '</div>' +
       '</div>');
   }
