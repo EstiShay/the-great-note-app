@@ -21,21 +21,44 @@ function arrayofNotes() {
 //UI Logic
 $(function(){
   var modal = document.getElementById("myModal");
+  var allModals = document.getElementsByClassName("modal");
   var btn = document.getElementById("newNoteButton");
-  var span = document.getElementsByClassName("close")[0];
+  var span = document.getElementsByClassName("closenotemodal")[0];
+  var button = document.getElementById("closebutton");
   var allContent = new arrayofNotes();
 
   btn.onclick = function() {
     modal.style.display = "block";
   }
   span.onclick = function() {
-      modal.style.display = "none";
+    modal.style.display = "none";
   }
   window.onclick = function(event) {
-      if (event.target === modal) {
-          modal.style.display = "none";
-      }
+    if (event.target === modal || event.target === checklistModal) {
+      modal.style.display = "none";
+      checklistModal.style.display = "none";
+    }
   }
+  button.onclick = function() {
+        modal.style.display = "none";
+  }
+
+  var checklistModal = document.getElementById("checklistModal");
+  var checklistButton = document.getElementById("newChecklistButton");
+  var checklistSpan = document.getElementsByClassName("closechecklist")[0];
+  var checklistClose = document.getElementById("closechecklist");
+
+  checklistButton.onclick = function() {
+    checklistModal.style.display = "block";
+  }
+  checklistSpan.onclick = function() {
+    checklistModal.style.display = "none";
+  }
+  checklistClose.onclick = function() {
+    checklistModal.style.display = "none";
+  }
+
+
   function appendNotes(note) {
     $(".wrapper").append('<div class="panel panel">' +
     '<div class="panel-heading">' +
@@ -46,22 +69,20 @@ $(function(){
         '<h4>Note Details: </h4>' +
   //      '<div class="details">' +
           '<p>' + note.noteText + '</p>' +
-           '<input id="' + note.noteTitle + '" class="done-button" type="button"  value="Archive">' +
+           '<input id="' + note.noteTitle + '" class="btn done-button" type="button"  value="Archive">' +
         '</div>' +
       '</div>');
   }
   $("form#newNote").submit(function(event){
     var newNoteTitle = $("input#newNoteTitle").val();
     var newNoteText = $("textarea#newNoteDescription").val();
-    var button = document.getElementById("closebutton");
+
 
     var newNote = new Note(newNoteTitle, newNoteText);
     appendNotes(newNote);
     allContent.allNotes.push(newNote);
 
-    button.onclick = function() {
-        modal.style.display = "none";
-    }
+
     $("input#newNoteTitle").val('');
     $("textarea#newNoteDescription").val('');
    event.preventDefault();
