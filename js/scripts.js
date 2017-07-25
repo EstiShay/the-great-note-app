@@ -39,7 +39,7 @@ $(function(){
   }
   $("form#newNote").submit(function(event){
     var newNoteTitle = $("input#newNoteTitle").val();
-    var newNoteText = $("input#newNoteDescription").val();
+    var newNoteText = $("textarea#newNoteDescription").val();
     var button = document.getElementById("closebutton");
 
     var newNote = new Note(newNoteTitle, newNoteText);
@@ -48,7 +48,7 @@ $(function(){
         modal.style.display = "none";
     }
     $("input#newNoteTitle").val('');
-    $("input#newNoteDescription").val('');
+    $("textarea#newNoteDescription").val('');
    event.preventDefault();
 
  });
