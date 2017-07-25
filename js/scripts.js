@@ -41,19 +41,17 @@ $(function(){
 $("form#newNote").submit(function(event){
   var newNoteTitle = $("input#newNoteTitle").val();
   var newNoteText = $("input#newNoteDescription").val();
-
+  var button = document.getElementById("closebutton");
 
   var newNote = new Note(newNoteTitle, newNoteText);
   appendNotes(newNote);
-    console.log(newNote);
-
-
-
-  console.log(newNoteTitle);
-  console.log(newNoteText);
-
-
+  button.onclick = function() {
+      modal.style.display = "none";
+  }
+  $("input#newNoteTitle").val('');
+  $("input#newNoteDescription").val('');
  event.preventDefault();
+
 });
 
 
