@@ -59,7 +59,6 @@ $(function(){
     var newNote = new Note(newNoteTitle, newNoteText);
     appendNotes(newNote);
     allContent.allNotes.push(newNote);
-    console.log(allContent.allNotes);
 
     button.onclick = function() {
         modal.style.display = "none";
@@ -70,12 +69,10 @@ $(function(){
 
    $(".done-button").click(function() {
      var currentNoteId = $(this)[0].id;
-     console.log($(this)[0].id);
      allContent.allNotes.forEach(function(note) {
        if (note.noteTitle === currentNoteId) {
          note.changeStatus();
        }
-       console.log(note.doneStatus);
      });
  });
 
