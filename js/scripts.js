@@ -2,10 +2,20 @@
 function Note (noteTitle, noteText) {
   this.noteTitle = noteTitle;
   this.noteText = noteText;
+  this.doneStatus = false;
 }
 function AllContent() {
   this.allNotes = [];
 }
+
+AllContent.prototype.changeStatus = function(ourNote) {
+  allNotes.forEach(function(aNote) {
+    if (ourNote.noteTitle === aNote.noteTitle) {
+      aNote.doneStatus = true;
+    }
+  })
+}
+
 function appendNotes(note) {
   $(".wrapper").append('<div class="panel panel">' +
   '<div class="panel-heading">' +
@@ -36,21 +46,29 @@ $(function(){
           modal.style.display = "none";
       }
   }
-$("form#newNote").submit(function(event){
-  var newNoteTitle = $("input#newNoteTitle").val();
-  var newNoteText = $("input#newNoteDescription").val();
-  var button = document.getElementById("closebutton");
+  $("form#newNote").submit(function(event){
+    var newNoteTitle = $("input#newNoteTitle").val();
+    var newNoteText = $("input#newNoteDescription").val();
+    var button = document.getElementById("closebutton");
 
-  var newNote = new Note(newNoteTitle, newNoteText);
-  appendNotes(newNote);
-  button.onclick = function() {
-      modal.style.display = "none";
-  }
-  $("input#newNoteTitle").val('');
-  $("input#newNoteDescription").val('');
- event.preventDefault();
+    var newNote = new Note(newNoteTitle, newNoteText);
+    appendNotes(newNote);
+    console.log(newNote);
+    button.onclick = function() {
+        modal.style.display = "none";
+    }
+    $("input#newNoteTitle").val('');
+    $("input#newNoteDescription").val('');
+   event.preventDefault();
 
-});
+  });
 
+  // $(".done-button").click(function() {
+  //   console.log($(this)[0].noteTitle);
+  //   var aNote = $(this)[0].noteTitle;
+  //   aNote.changeStatus();
+  //   console.log(aNote.changeStatus);
+  //   console.log(aNote.noteTitle);
+  // });
 
 });
