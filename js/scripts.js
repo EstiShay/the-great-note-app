@@ -25,6 +25,7 @@ $(function(){
   var span = document.getElementsByClassName("close")[0];
   var allContent = new arrayofNotes();
 
+
   btn.onclick = function() {
     modal.style.display = "block";
   }
@@ -58,6 +59,7 @@ $(function(){
     var newNote = new Note(newNoteTitle, newNoteText);
     appendNotes(newNote);
     allContent.allNotes.push(newNote);
+    //allContent.push(newNote);
 
     button.onclick = function() {
         modal.style.display = "none";
@@ -67,12 +69,24 @@ $(function(){
    event.preventDefault();
 
    $(".done-button").click(function() {
+     console.log("Archive is clicked");
      var currentNoteId = $(this)[0].id;
      allContent.allNotes.forEach(function(note) {
        if (note.noteTitle === currentNoteId) {
          note.changeStatus();
+         console.log("note got archived");
        }
      });
+     $(".wrapper").empty();
+     var currentNotes = allContent.allNotes.filter(function(note) {
+       return note.doneStatus === false;
+     });
+
+     console.log(currentNotes);
+     currentNotes.forEach(function(note) {
+       appendNotes(note);
+     });
    });
+     modal.style.display = "none";
  });
 });
