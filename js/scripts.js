@@ -13,9 +13,10 @@ function appendNotes(note) {
   '</div>' +
   '<div class="panel-body">' +
 //    '<div class="detail-reveal">' +
-      '<p>Note Details</p>' +
+      '<h4>Note Details: </h4>' +
 //      '<div class="details">' +
-        note.noteText +
+        '<p>' + note.noteText + '</p>' +
+         '<input id="' + note.noteTitle + '" class="done-button" type="button"  value="Archive">' +
       '</div>' +
     '</div>');
 }
@@ -36,21 +37,21 @@ $(function(){
           modal.style.display = "none";
       }
   }
-$("form#newNote").submit(function(event){
-  var newNoteTitle = $("input#newNoteTitle").val();
-  var newNoteText = $("input#newNoteDescription").val();
-  var button = document.getElementById("closebutton");
+  $("form#newNote").submit(function(event){
+    var newNoteTitle = $("input#newNoteTitle").val();
+    var newNoteText = $("input#newNoteDescription").val();
+    var button = document.getElementById("closebutton");
 
-  var newNote = new Note(newNoteTitle, newNoteText);
-  appendNotes(newNote);
-  button.onclick = function() {
-      modal.style.display = "none";
-  }
-  $("input#newNoteTitle").val('');
-  $("input#newNoteDescription").val('');
- event.preventDefault();
+    var newNote = new Note(newNoteTitle, newNoteText);
+    appendNotes(newNote);
+    button.onclick = function() {
+        modal.style.display = "none";
+    }
+    $("input#newNoteTitle").val('');
+    $("input#newNoteDescription").val('');
+   event.preventDefault();
 
-});
+ });
 
 
 });
