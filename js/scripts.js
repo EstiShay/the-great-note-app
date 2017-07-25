@@ -2,15 +2,28 @@
 function Note (noteTitle, noteText) {
   this.noteTitle = noteTitle;
   this.noteText = noteText;
+  this.doneStatus = false;
 }
-function AllContent() {
+function arrayofNotes() {
   this.allNotes = [];
 }
+ Note.prototype.changeStatus = function() {
+   this.doneStatus = true;
+ }
+
+// arrayofNotes.prototype.changeStatus = function(ourNote) {
+//   allNotes.forEach(function(aNote) {
+//     if (ourNote.noteTitle === aNote.noteTitle) {
+//       aNote.doneStatus = true;
+//     }
+//   })
+// }
 //UI Logic
 $(function(){
   var modal = document.getElementById("myModal");
   var btn = document.getElementById("newNoteButton");
   var span = document.getElementsByClassName("close")[0];
+  var allContent = new arrayofNotes();
 
   btn.onclick = function() {
     modal.style.display = "block";
@@ -44,6 +57,8 @@ $(function(){
 
     var newNote = new Note(newNoteTitle, newNoteText);
     appendNotes(newNote);
+    allContent.allNotes.push(newNote);
+
     button.onclick = function() {
         modal.style.display = "none";
     }
@@ -51,18 +66,13 @@ $(function(){
     $("textarea#newNoteDescription").val('');
    event.preventDefault();
 
-   $(".done-button").click(function(){
-     console.log("hi");
+   $(".done-button").click(function() {
+     var currentNoteId = $(this)[0].id;
+     allContent.allNotes.forEach(function(note) {
+       if (note.noteTitle === currentNoteId) {
+         note.changeStatus();
+       }
+     });
+   });
  });
-
- });
-
-
-
-
-
-
-
-
-
 });
