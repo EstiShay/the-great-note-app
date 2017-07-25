@@ -6,20 +6,6 @@ function Note (noteTitle, noteText) {
 function AllContent() {
   this.allNotes = [];
 }
-function appendNotes(note) {
-  $(".wrapper").append('<div class="panel panel">' +
-  '<div class="panel-heading">' +
-    '<h4>' + note.noteTitle + '</h4>' +
-  '</div>' +
-  '<div class="panel-body">' +
-//    '<div class="detail-reveal">' +
-      '<h4>Note Details: </h4>' +
-//      '<div class="details">' +
-        '<p>' + note.noteText + '</p>' +
-         '<input id="' + note.noteTitle + '" class="done-button" type="button"  value="Archive">' +
-      '</div>' +
-    '</div>');
-}
 //UI Logic
 $(function(){
   var modal = document.getElementById("myModal");
@@ -37,6 +23,20 @@ $(function(){
           modal.style.display = "none";
       }
   }
+  function appendNotes(note) {
+    $(".wrapper").append('<div class="panel panel">' +
+    '<div class="panel-heading">' +
+      '<h4>' + note.noteTitle + '</h4>' +
+    '</div>' +
+    '<div class="panel-body">' +
+  //    '<div class="detail-reveal">' +
+        '<h4>Note Details: </h4>' +
+  //      '<div class="details">' +
+          '<p>' + note.noteText + '</p>' +
+           '<input id="' + note.noteTitle + '" class="done-button" type="button"  value="Archive">' +
+        '</div>' +
+      '</div>');
+  }
   $("form#newNote").submit(function(event){
     var newNoteTitle = $("input#newNoteTitle").val();
     var newNoteText = $("textarea#newNoteDescription").val();
@@ -51,7 +51,18 @@ $(function(){
     $("textarea#newNoteDescription").val('');
    event.preventDefault();
 
+   $(".done-button").click(function(){
+     console.log("hi");
  });
+
+ });
+
+
+
+
+
+
+
 
 
 });

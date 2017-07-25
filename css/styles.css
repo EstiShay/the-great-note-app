@@ -27,11 +27,28 @@
   grid-gap: 10px;
 }
 .panel-body {
-  border: 2px solid blue;
+  border: 2px solid #7f673b;
   text-align: center;
 }
 .panel-heading {
-  border: 2px solid blue;
+  border: 2px solid #7f673b;
   padding: 2px;
   text-align: center;
+}
+html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  background: url('../img/todolist.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: black;
+}
+.jumbotron {
+  background: inherit;
+}
+.btn {
+  background: #ad9b79;
+  border: 2px solid #ad9b79;
 }
