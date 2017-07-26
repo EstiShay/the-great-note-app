@@ -69,7 +69,7 @@ $(function(){
           '</div>' +
         '</div>');
     }
-  
+
   $("form#newNote").submit(function(event){
     var newNoteTitle = $("input#newNoteTitle").val();
     var newNoteText = $("textarea#newNoteDescription").val();
@@ -103,6 +103,7 @@ $(function(){
 
   $("input#newChecklistTitle").val('');
   $("input#newChecklistDescription").val('');
- });
   checklistModal.style.display = "none";
+ });
+
 });
