@@ -43,7 +43,7 @@ $(function(){
   function appendNotes(note) {
     $(".wrapper").append('<div class="panel panel ' + note.id + '">' +
     '<div class="panel-heading">' +
-      '<h4>' + note.noteTitle + '</h4>' +
+      '<h3>' + note.noteTitle + '</h3>' +
     '</div>' +
     '<div class="panel-body">' +
         '<h4>Note Details: </h4>' +
@@ -55,7 +55,7 @@ $(function(){
   function appendCheckList(checklist) {
     $(".wrapper").append('<div class="panel panel ' + checklist.id + '">' +
       '<div class="panel-heading">' +
-      '<h4>' + checklist.noteTitle + '</h4>' +
+      '<h3>' + checklist.noteTitle + '</h3>' +
           '</div>' +
       '<div class="panel-body">'
          );

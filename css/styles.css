@@ -7,6 +7,9 @@
 }
 .jumbotron {
   text-align: center;
+  border-bottom: 4px solid #4f4630;
+  color: #a8a8a3;
+  background: inherit;
 }
 .modal {
     display: none; /* Hidden by default */
@@ -29,11 +32,14 @@
 .panel-body {
   border: 2px solid #7f673b;
   text-align: center;
+  color: black;
+  display: block;
 }
 .panel-heading {
   border: 2px solid #7f673b;
   padding: 2px;
   text-align: center;
+  color:black;
 }
 html {
   position: relative;
@@ -43,12 +49,23 @@ body {
   background: url('../img/todolist.png');
   background-repeat: no-repeat;
   background-size: cover;
-  color: black;
-}
-.jumbotron {
-  background: inherit;
+  color: #a8a8a3;
 }
 .btn {
-  background: #ad9b79;
+  background: #665f49;
   border: 2px solid #ad9b79;
+  color: white;
+  margin: 5px;
+}
+h4{
+  text-decoration: underline;
+}
+.modal-content {
+}
+textarea {
+  height: 150px;
+  width: 400px;
+}
+checkbox {
+  font-size: 14pt;
 }
