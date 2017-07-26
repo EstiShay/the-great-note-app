@@ -31,7 +31,6 @@ $(function(){
       checklistModal.style.display = "none";
     }
   }
-
   var checklistModal = document.getElementById("checklistModal");
   var checklistButton = document.getElementById("newChecklistButton");
   var checklistSpan = document.getElementsByClassName("closechecklist")[0];
@@ -55,20 +54,22 @@ $(function(){
         '</div>' +
       '</div>');
   }
-  function appendCheckList(checklist) {
-    $(".wrapper").append('<div class="panel panel">' +
+  // function appendCheckList(checklist) {
+    function appendCheckList(checklist) {
+     $(".wrapper").append('<div class="panel panel">' +
     '<div class="panel-heading">' +
     '<h4>' + checklist.noteTitle + '</h4>' +
-    '</div>' +
-    '<div class="panel-body">'
-      );
-    for (index=0; index < checklist.noteText.length; index += 1) {
-      $(".panel-body").append('<input type="checkbox" name="" value="' + checklist.noteText[index] + '"> ' + checklist.noteText[index] + ' <br>');
-    }
-    $(".panel-body").append('<input id="' + checklist.noteTitle + '" class="btn done-button" type="button"  value="Archive">' +
         '</div>' +
-      '</div>');
-  }
+    '<div class="panel-body">'
+       );
+     for (index=0; index < checklist.noteText.length; index += 1) {
+     $(".panel-body").last().append('<input type="checkbox" name="" value="' + checklist.noteText[index] + '"> ' + checklist.noteText[index] + ' <br>');
+    }
+   $(".panel-body").last().append('<input id="' + checklist.noteTitle + '" class="btn done-button" type="button"  value="Archive">' +
+          '</div>' +
+        '</div>');
+    }
+  
   $("form#newNote").submit(function(event){
     var newNoteTitle = $("input#newNoteTitle").val();
     var newNoteText = $("textarea#newNoteDescription").val();
@@ -95,16 +96,10 @@ $(function(){
   event.preventDefault();
   var newCheckListTitle = $("input#newChecklistTitle").val();
   var newCheckListText = $("input#newChecklistDescription").val().split(',');
-  // console.log(newCheckListTitle,newCheckListText);
   var newChecklist = new Note(newCheckListTitle, newCheckListText);
 
-  // new.forEach(function(checklist){
-  //   appendCheckList(checklist);
-  // })
   appendCheckList(newChecklist);
-  // console.log(checkList);
   allContent.allNotes.push(newChecklist);
-// console.log(allContent.allNotes());
 
   $("input#newChecklistTitle").val('');
   $("input#newChecklistDescription").val('');
