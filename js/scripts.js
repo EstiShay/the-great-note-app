@@ -1,11 +1,13 @@
 //Business Logic
+
+var noteArray = [];
+
 function Note (noteTitle, noteText) {
   this.noteTitle = noteTitle;
   this.noteText = noteText;
   this.doneStatus = false;
-}
-function arrayofNotes() {
-  this.allNotes = [];
+  this.id = "";
+  noteArray.push(this);
 }
  Note.prototype.changeStatus = function() {
    this.doneStatus = true;
@@ -16,8 +18,6 @@ $(function(){
   var modal = document.getElementById("myModal");
   var btn = document.getElementById("newNoteButton");
   var span = document.getElementsByClassName("close")[0];
-  var allContent = new arrayofNotes();
-
 
   btn.onclick = function() {
     modal.style.display = "block";
@@ -40,18 +40,20 @@ $(function(){
         '<h4>Note Details: </h4>' +
   //      '<div class="details">' +
           '<p>' + note.noteText + '</p>' +
-           '<input id="' + note.noteTitle + '" class="done-button" type="button"  value="Archive">' +
+           '<input id="' + note.id + '" class="done-button" type="button"  value="Archive">' +
         '</div>' +
       '</div>');
   }
   $("form#newNote").submit(function(event){
+
     var newNoteTitle = $("input#newNoteTitle").val();
     var newNoteText = $("textarea#newNoteDescription").val();
     var button = document.getElementById("closebutton");
 
     var newNote = new Note(newNoteTitle, newNoteText);
+    newNote.id = noteArray.length;
+
     appendNotes(newNote);
-    allContent.allNotes.push(newNote);
 
     button.onclick = function() {
         modal.style.display = "none";
@@ -61,14 +63,15 @@ $(function(){
    event.preventDefault();
 
    $(document).on("click", "input.done-button", function() {
-     var currentNoteId = $(this)[0].id;
-     allContent.allNotes.forEach(function(note) {
-       if (note.noteTitle === currentNoteId) {
+      var currentNoteId = $(this)[0].id;
+
+     noteArray.forEach(function(note) {
+       if (note.id == currentNoteId) {
          note.changeStatus();
        }
      });
      $(".wrapper").empty();
-     var currentNotes = allContent.allNotes.filter(function(note) {
+     var currentNotes = noteArray.filter(function(note) {
        return note.doneStatus === false;
      });
      currentNotes.forEach(function(note) {
