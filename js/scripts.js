@@ -11,13 +11,6 @@ function arrayofNotes() {
    this.doneStatus = true;
  }
 
-// arrayofNotes.prototype.changeStatus = function(ourNote) {
-//   allNotes.forEach(function(aNote) {
-//     if (ourNote.noteTitle === aNote.noteTitle) {
-//       aNote.doneStatus = true;
-//     }
-//   })
-// }
 //UI Logic
 $(function(){
   var modal = document.getElementById("myModal");
@@ -59,7 +52,6 @@ $(function(){
     var newNote = new Note(newNoteTitle, newNoteText);
     appendNotes(newNote);
     allContent.allNotes.push(newNote);
-    //allContent.push(newNote);
 
     button.onclick = function() {
         modal.style.display = "none";
@@ -68,24 +60,21 @@ $(function(){
     $("textarea#newNoteDescription").val('');
    event.preventDefault();
 
-   $(".done-button").click(function() {
-     console.log("Archive is clicked");
+   $(document).on("click", "input.done-button", function() {
      var currentNoteId = $(this)[0].id;
      allContent.allNotes.forEach(function(note) {
        if (note.noteTitle === currentNoteId) {
          note.changeStatus();
-         console.log("note got archived");
        }
      });
      $(".wrapper").empty();
      var currentNotes = allContent.allNotes.filter(function(note) {
        return note.doneStatus === false;
      });
-
-     console.log(currentNotes);
      currentNotes.forEach(function(note) {
        appendNotes(note);
      });
+     event.preventDefault();
    });
      modal.style.display = "none";
  });
