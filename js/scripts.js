@@ -1,4 +1,4 @@
-//Business Logic
+ //Business Logic
 function Note (noteTitle, noteText) {
   this.noteTitle = noteTitle;
   this.noteText = noteText;
@@ -43,7 +43,6 @@ $(function(){
   checklistSpan.onclick = function() {
     checklistModal.style.display = "none";
   }
-
   function appendNotes(note) {
     $(".wrapper").append('<div class="panel panel">' +
     '<div class="panel-heading">' +
@@ -52,7 +51,21 @@ $(function(){
     '<div class="panel-body">' +
         '<h4>Note Details: </h4>' +
           '<p>' + note.noteText + '</p>' +
-           '<input id="' + note.noteTitle + '" class="btn done-button" type="button"  value="Archive">' +
+           '<input id="' + note.noteTitle + '" class="btn checklist-button" type="button"  value="Archive">' +
+        '</div>' +
+      '</div>');
+  }
+  function appendCheckList(checklist) {
+    $(".wrapper").append('<div class="panel panel">' +
+    '<div class="panel-heading">' +
+    '<h4>' + checklist.noteTitle + '</h4>' +
+    '</div>' +
+    '<div class="panel-body">'
+      );
+    for (index=0; index < checklist.noteText.length; index += 1) {
+      $(".panel-body").append('<input type="checkbox" name="" value="' + checklist.noteText[index] + '"> ' + checklist.noteText[index] + ' <br>');
+    }
+    $(".panel-body").append('<input id="' + checklist.noteTitle + '" class="btn done-button" type="button"  value="Archive">' +
         '</div>' +
       '</div>');
   }
@@ -60,14 +73,13 @@ $(function(){
     var newNoteTitle = $("input#newNoteTitle").val();
     var newNoteText = $("textarea#newNoteDescription").val();
 
-
     var newNote = new Note(newNoteTitle, newNoteText);
     appendNotes(newNote);
     allContent.allNotes.push(newNote);
 
     $("input#newNoteTitle").val('');
     $("textarea#newNoteDescription").val('');
-   event.preventDefault();
+    event.preventDefault();
 
    $(".done-button").click(function() {
      var currentNoteId = $(this)[0].id;
@@ -80,10 +92,22 @@ $(function(){
    modal.style.display = "none";
  });
  $("form#newChecklist").submit(function(event) {
-   event.preventDefault();
-   var newCheckListTitle = $("input#newChecklistTitle").val();
-   var newCheckListText = $("input#newChecklistDescription").val();
-   console.log(newCheckListTitle,newCheckListText);
+  event.preventDefault();
+  var newCheckListTitle = $("input#newChecklistTitle").val();
+  var newCheckListText = $("input#newChecklistDescription").val().split(',');
+  // console.log(newCheckListTitle,newCheckListText);
+  var newChecklist = new Note(newCheckListTitle, newCheckListText);
+
+  // new.forEach(function(checklist){
+  //   appendCheckList(checklist);
+  // })
+  appendCheckList(newChecklist);
+  // console.log(checkList);
+  allContent.allNotes.push(newChecklist);
+// console.log(allContent.allNotes());
+
+  $("input#newChecklistTitle").val('');
+  $("input#newChecklistDescription").val('');
  });
   checklistModal.style.display = "none";
 });
