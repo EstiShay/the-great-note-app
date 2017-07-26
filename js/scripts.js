@@ -1,10 +1,9 @@
 //Business Logic
-
 var noteArray = [];
-
-function Note (noteTitle, noteText) {
+function Note (noteTitle, noteText, noteType) {
   this.noteTitle = noteTitle;
   this.noteText = noteText;
+  this.type= noteType;
   this.doneStatus = false;
   this.id = "";
   noteArray.push(this);
@@ -12,35 +11,58 @@ function Note (noteTitle, noteText) {
  Note.prototype.changeStatus = function() {
    this.doneStatus = true;
  }
-
 //UI Logic
 $(function(){
   var modal = document.getElementById("myModal");
+  var span = document.getElementsByClassName("closenotemodal")[0];
   var btn = document.getElementById("newNoteButton");
-  var span = document.getElementsByClassName("close")[0];
 
   btn.onclick = function() {
     modal.style.display = "block";
   }
   span.onclick = function() {
-      modal.style.display = "none";
+    modal.style.display = "none";
   }
   window.onclick = function(event) {
-      if (event.target === modal) {
-          modal.style.display = "none";
-      }
+    if (event.target === modal || event.target === checklistModal) {
+      modal.style.display = "none";
+      checklistModal.style.display = "none";
+    }
+  }
+  var checklistModal = document.getElementById("checklistModal");
+  var checklistButton = document.getElementById("newChecklistButton");
+  var checklistSpan = document.getElementsByClassName("closechecklist")[0];
+  var checklistClose = document.getElementById("closechecklist");
+
+  checklistButton.onclick = function() {
+    checklistModal.style.display = "block";
+  }
+  checklistSpan.onclick = function() {
+    checklistModal.style.display = "none";
   }
   function appendNotes(note) {
-    $(".wrapper").append('<div class="panel panel">' +
+    $(".wrapper").append('<div class="panel panel ' + note.id + '">' +
     '<div class="panel-heading">' +
       '<h4>' + note.noteTitle + '</h4>' +
     '</div>' +
     '<div class="panel-body">' +
-  //    '<div class="detail-reveal">' +
         '<h4>Note Details: </h4>' +
-  //      '<div class="details">' +
           '<p>' + note.noteText + '</p>' +
-           '<input id="' + note.id + '" class="done-button" type="button"  value="Archive">' +
+           '<input id="' + note.id + '" class="btn done-button" type="button"  value="Archive">' +
+        '</div>' +
+      '</div>');
+  }
+  function appendCheckList(checklist) {
+    $(".wrapper").append('<div class="panel panel ' + checklist.id + '">' +
+      '<div class="panel-heading">' +
+      '<h4>' + checklist.noteTitle + '</h4>' +
+          '</div>' +
+      '<div class="panel-body">'
+         );
+    for (index=0; index < checklist.noteText.length; index += 1) {
+       $(".panel-body").last().append('<input type="checkbox" name="" value="' + checklist.noteText[index] + '"> ' + checklist.noteText[index] + ' <br>');
+    }
+    $(".panel-body").last().append('<input id="' + checklist.id + '" class="btn done-button" type="button"  value="Archive">' +
         '</div>' +
       '</div>');
   }
@@ -48,37 +70,42 @@ $(function(){
 
     var newNoteTitle = $("input#newNoteTitle").val();
     var newNoteText = $("textarea#newNoteDescription").val();
-    var button = document.getElementById("closebutton");
+    var newType = "note";
 
-    var newNote = new Note(newNoteTitle, newNoteText);
+    var newNote = new Note(newNoteTitle, newNoteText, newType);
     newNote.id = noteArray.length;
 
     appendNotes(newNote);
 
-    button.onclick = function() {
-        modal.style.display = "none";
-    }
     $("input#newNoteTitle").val('');
     $("textarea#newNoteDescription").val('');
-   event.preventDefault();
+    event.preventDefault();
 
    $(document).on("click", "input.done-button", function() {
-      var currentNoteId = $(this)[0].id;
+    var currentNoteId = $(this)[0].id;
+    noteArray.forEach(function(note) {
+      if (note.id == currentNoteId) {
+        note.changeStatus();
+        var noteClass = "." + currentNoteId;
+        $(noteClass).hide();
+      }
+    });
+    event.preventDefault();
+  });
+  modal.style.display = "none";
+});
+$("form#newChecklist").submit(function(event) {
+  event.preventDefault();
+  var newCheckListTitle = $("input#newChecklistTitle").val();
+  var newCheckListText = $("input#newChecklistDescription").val().split(',');
+  var newCheckType = "checklist";
+  var newChecklist = new Note(newCheckListTitle, newCheckListText, newCheckType);
+  newChecklist.id = noteArray.length;
+  appendCheckList(newChecklist);
+  noteArray.push(newChecklist);
 
-     noteArray.forEach(function(note) {
-       if (note.id == currentNoteId) {
-         note.changeStatus();
-       }
-     });
-     $(".wrapper").empty();
-     var currentNotes = noteArray.filter(function(note) {
-       return note.doneStatus === false;
-     });
-     currentNotes.forEach(function(note) {
-       appendNotes(note);
-     });
-     event.preventDefault();
-   });
-     modal.style.display = "none";
+  $("input#newChecklistTitle").val('');
+  $("input#newChecklistDescription").val('');
+  checklistModal.style.display = "none";
  });
 });

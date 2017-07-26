@@ -24,7 +24,7 @@
       <!-- Modal content-->
           <div class="modal-content">
             <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <button type="button" class="close closenotemodal" data-dismiss="modal">&times;</button>
               <h4 class="modal-title">New note</h4>
             </div>
             <div class="modal-body">
@@ -34,19 +34,46 @@
                   <input type="text" class="form-control" id ="newNoteTitle" placeholder="Note title">
                   <div class="form-group">
                     <label for="newNoteDescription">Note description</label>
-                    <!-- <input type="text" class="form-control" id ="newNoteDescription" placeholder="Note description"> -->
-                    <textarea id="newNoteDescription" placeholder="Note description"></textarea>
+                    <textarea id="newNoteDescription" class="form-control" placeholder="Note description"></textarea>
                   </div>
                 </div>
             </div>
             <div class="modal-footer">
               <button type="submit" class="btn">Save changes</button>
-               <button id="closebutton" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
               </form>
             </div>
           </div>
         </div>
       </div>
+      <!-- Trigger the modal with a button -->
+          <button id="newChecklistButton" type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Add New Checklist</button>
+      <!-- Modal -->
+          <div class="modal" id="checklistModal" role="dialog">
+            <div class="modal-dialog">
+          <!-- Modal content-->
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close closechecklist" data-dismiss="modal">&times;</button>
+                  <h4 class="modal-title">New Checklist</h4>
+                </div>
+                <div class="modal-body">
+                  <form id="newChecklist">
+                    <div class="form-group">
+                      <label for="newChecklistTitle">Checklist title</label>
+                      <input type="text" class="form-control" id ="newChecklistTitle" placeholder="Checklist title">
+                      <div class="form-group">
+                        <label for="newChecklistDescription">Checklist Items</label>
+                        <input id="newChecklistDescription" type="text" class="form-control" placeholder="Checklist Items, Seperate by Commas">
+                      </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="submit" class="btn">Save changes</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
     </div>
   </body>
 </html>
