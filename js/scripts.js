@@ -10,14 +10,6 @@ function arrayofNotes() {
  Note.prototype.changeStatus = function() {
    this.doneStatus = true;
  }
-
-// arrayofNotes.prototype.changeStatus = function(ourNote) {
-//   allNotes.forEach(function(aNote) {
-//     if (ourNote.noteTitle === aNote.noteTitle) {
-//       aNote.doneStatus = true;
-//     }
-//   })
-// }
 //UI Logic
 $(function(){
   var modal = document.getElementById("myModal");

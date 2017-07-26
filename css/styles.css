@@ -32,14 +32,13 @@
 .panel-body {
   border: 2px solid #7f673b;
   text-align: center;
-  background: #c6b999;
   color: black;
+  display: block;
 }
 .panel-heading {
   border: 2px solid #7f673b;
   padding: 2px;
   text-align: center;
-  background: #baad8d;
   color:black;
 }
 html {
@@ -52,17 +51,15 @@ body {
   background-size: cover;
   color: #a8a8a3;
 }
-
 .btn {
   background: #665f49;
   border: 2px solid #ad9b79;
+  color: white;
 }
 h4{
   text-decoration: underline;
 }
 .modal-content {
-  background: #665f49
-  /*color: white;*/
 }
 textarea {
   height: 150px;
