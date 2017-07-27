@@ -26,7 +26,6 @@ function Note (noteTitle, noteText, noteType, noteColor) {
         if ((note.doneStatus === true) && (note.type === "note")) {
           appendNotes(note);
           noteColorCall(note);
-          // document.getElementById(note.id).parentNode.style.background = note.noteColor;
         } else if ((note.doneStatus === true) && (note.type === "checklist")) {
           appendCheckList(note);
           checklistColorCall(note);
@@ -46,10 +45,10 @@ function Note (noteTitle, noteText, noteType, noteColor) {
     } else if (val === "High") {
       $(".wrapper").empty();
       noteArray.forEach(function(note) {
-        if ((note.noteColor === '#f2bfcc') && (note.type === "note")) {
+        if ((note.noteColor === '#f2bfcc') && (note.type === "note") && (note.doneStatus === false)) {
           appendNotes(note);
         noteColorCall(note);
-        } else if ((note.noteColor === '#f2bfcc') && (note.type === "checklist")) {
+        } else if ((note.noteColor === '#f2bfcc') && (note.type === "checklist") && (note.doneStatus === false)) {
           appendCheckList(note);
           checklistColorCall(note);
         }
@@ -57,10 +56,10 @@ function Note (noteTitle, noteText, noteType, noteColor) {
     } else if (val === "Medium") {
       $(".wrapper").empty();
       noteArray.forEach(function(note) {
-        if ((note.noteColor === '#c9dfe8') && (note.type === "note")) {
+        if ((note.noteColor === '#c9dfe8') && (note.type === "note") && (note.doneStatus === false)) {
           appendNotes(note);
           noteColorCall(note);
-        } else if ((note.noteColor === '#c9dfe8') && (note.type === "checklist")) {
+        } else if ((note.noteColor === '#c9dfe8') && (note.type === "checklist") && (note.doneStatus === false)) {
           appendCheckList(note);
           checklistColorCall(note);
         }
@@ -68,10 +67,10 @@ function Note (noteTitle, noteText, noteType, noteColor) {
     } else if (val === "Low") {
       $(".wrapper").empty();
       noteArray.forEach(function(note) {
-        if ((note.noteColor === '#e2e1e0') && (note.type === "note")) {
+        if ((note.noteColor === '#e2e1e0') && (note.type === "note") && (note.doneStatus === false)) {
           appendNotes(note);
           noteColorCall(note);
-        } else if ((note.noteColor === '#e2e1e0') && (note.type === "checklist")) {
+        } else if ((note.noteColor === '#e2e1e0') && (note.type === "checklist") && (note.doneStatus === false)) {
           appendCheckList(note);
           checklistColorCall(note);
         }
