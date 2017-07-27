@@ -67,8 +67,6 @@ $(function(){
        $(".panel-body").last().append('<input type="checkbox" name="" value="' + checklist.noteText[index] + '"> ' + checklist.noteText[index] + ' <br>');
     }
     $(".panel-footer").last().append('<input id="' + checklist.id + '" class="btn done-button" type="button"  value="Archive">'
-      //   '</div>' +
-      // '</div>');
     );
   }
   $("form#newNote").submit(function(event){
