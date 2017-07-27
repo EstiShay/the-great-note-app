@@ -6,6 +6,7 @@ function Note (noteTitle, noteText, noteType) {
   this.type= noteType;
   this.doneStatus = false;
   this.id = "";
+  this.noteColor;
   noteArray.push(this);
 }
  Note.prototype.changeStatus = function() {
@@ -71,11 +72,24 @@ $(function(){
     var newNoteTitle = $("input#newNoteTitle").val();
     var newNoteText = $("textarea#newNoteDescription").val();
     var newType = "note";
+    var notePriority = $("input:radio[name=priority]:checked").val();
+    var noteColor;
+    if (notePriority === "low") {
+      noteColor = '#FEF65B';
+    } else if (notePriority === "high") {
+      noteColor = '#f56560';
+    }
+    else {
+      noteColor = '#91beae';
+    }
 
     var newNote = new Note(newNoteTitle, newNoteText, newType);
     newNote.id = noteArray.length;
 
     appendNotes(newNote);
+
+    document.getElementById(newNote.id).parentNode.style.background = noteColor;
+
 
     $("input#newNoteTitle").val('');
     $("textarea#newNoteDescription").val('');
