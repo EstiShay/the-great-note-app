@@ -13,18 +13,27 @@ function Note (noteTitle, noteText, noteType, noteColor) {
    this.doneStatus = true;
  }
 // Sort notes with dropdown menu
- function sortNotes(val) {
-   if (val === "done") {
-     $(".wrapper").empty()
-     noteArray.forEach(function(note) {
-       if ((note.doneStatus === true) && (note.type === "note")) {
+  function sortNotes(val) {
+    if (val === "done") {
+      $(".wrapper").empty()
+      noteArray.forEach(function(note) {
+        if ((note.doneStatus === true) && (note.type === "note")) {
           appendNotes(note);
-       } else if ((note.doneStatus === true) && (note.type === "checklist")) {
+        } else if ((note.doneStatus === true) && (note.type === "checklist")) {
           appendCheckList(note);
-       }
-     });
-   }
- }
+        }
+      });
+    } else if (val === "current"){
+      $(".wrapper").empty();
+      noteArray.forEach(function(note) {
+        if ((note.doneStatus === false) && (note.type === "note")) {
+          appendNotes(note);
+        } else if ((note.doneStatus === false) && (note.type === "checklist")) {
+          appendCheckList(note);
+        }
+      });
+    }
+  }
  function appendNotes(note) {
    $(".wrapper").append('<div class="panel panel ' + note.id + '">' +
    '<div class="panel-heading">' +
