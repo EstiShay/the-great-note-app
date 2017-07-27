@@ -49,6 +49,8 @@ $(function(){
     '<div class="panel-body">' +
         '<h4>Note Details: </h4>' +
           '<p>' + note.noteText + '</p>' +
+          '</div>' +
+          '<div class="panel-footer">' +
            '<input id="' + note.id + '" class="btn done-button" type="button"  value="Archive">' +
         '</div>' +
       '</div>');
@@ -58,14 +60,16 @@ $(function(){
       '<div class="panel-heading">' +
       '<h3>' + checklist.noteTitle + '</h3>' +
           '</div>' +
-      '<div class="panel-body">'
+      '<div class="panel-body" id="checklistID">' +
+      '</div>' + '<div class="panel-footer">' + '</div>' + '</div>'
          );
     for (index=0; index < checklist.noteText.length; index += 1) {
        $(".panel-body").last().append('<input type="checkbox" name="" value="' + checklist.noteText[index] + '"> ' + checklist.noteText[index] + ' <br>');
     }
-    $(".panel-body").last().append('<input id="' + checklist.id + '" class="btn done-button" type="button"  value="Archive">' +
-        '</div>' +
-      '</div>');
+    $(".panel-footer").last().append('<input id="' + checklist.id + '" class="btn done-button" type="button"  value="Archive">'
+      //   '</div>' +
+      // '</div>');
+    );
   }
   $("form#newNote").submit(function(event){
 

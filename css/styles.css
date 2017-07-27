@@ -34,13 +34,23 @@
   text-align: center;
   color: black;
   display: block;
-  margin-bottom: auto;
+  margin: auto;
+  padding: 0px;
+  height: 175px;
+}
+#checklistID {
+  padding-top: 40px;
+  padding-bottom: 30px;
 }
 .panel-heading {
   border: 2px solid #7f673b;
   padding: 2px;
   text-align: center;
   color:black;
+}
+.panel {
+  border: 2px solid #7f673b;
+  text-align: center;
 }
 html {
   position: relative;
