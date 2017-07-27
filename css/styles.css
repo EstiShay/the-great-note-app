@@ -34,7 +34,7 @@
   text-align: center;
   color: black;
   display: block;
-  margin-bottom: 0px;
+  margin-bottom: auto;
 }
 .panel-heading {
   border: 2px solid #7f673b;

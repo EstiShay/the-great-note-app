@@ -110,9 +110,20 @@ $("form#newChecklist").submit(function(event) {
   var newCheckListTitle = $("input#newChecklistTitle").val();
   var newCheckListText = $("input#newChecklistDescription").val().split(',');
   var newCheckType = "checklist";
+  var checklistPriority = $("input:radio[name=priorityChecklist]:checked").val();
+  var checklistColor;
+  if (checklistPriority === "medium") {
+    checklistColor = '#c9dfe8';
+  } else if (checklistPriority === "high") {
+    checklistColor = '#f2bfcc';
+  } else {
+    checklistColor = '#e2e1e0';
+  }
+
   var newChecklist = new Note(newCheckListTitle, newCheckListText, newCheckType);
   newChecklist.id = noteArray.length;
   appendCheckList(newChecklist);
+  document.getElementById(newChecklist.id).parentNode.style.background = checklistColor;
   noteArray.push(newChecklist);
 
   $("input#newChecklistTitle").val('');
