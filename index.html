@@ -13,12 +13,9 @@
         <h1>The Greatest Note App</h1>
         <h3>Add Checklists and Notes</h3>
       </div>
-  <!-- Trigger the modal with a button -->
       <button id="newNoteButton" type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Add New Note</button>
-  <!-- Modal -->
       <div class="modal" id="myModal" role="dialog">
         <div class="modal-dialog">
-      <!-- Modal content-->
           <div class="modal-content">
             <div class="modal-header">
               <button type="button" class="close closenotemodal" data-dismiss="modal">&times;</button>
@@ -32,17 +29,17 @@
                   <h5> Priority:</h5>
                   <div class="radio">
                     <label>
-                      <input type="radio" name="priority" value="low" checked>Low
+                    <input type="radio" name="priority" value="low" checked>Low
                     </label>
                   </div>
                   <div class="radio">
                     <label>
-                      <input type="radio" name="priority" value="medium">Medium
+                    <input type="radio" name="priority" value="medium">Medium
                     </label>
                   </div>
                   <div class="radio">
                     <label>
-                      <input type="radio" name="priority" value="high">High
+                    <input type="radio" name="priority" value="high">High
                     </label>
                   </div>
                   <div class="form-group">
@@ -52,58 +49,54 @@
                 </div>
             </div>
             <div class="modal-footer">
-              <button type="submit" class="btn">Save changes</button>
-              </form>
+            <button type="submit" class="btn">Save changes</button>
             </div>
+            </form>
           </div>
         </div>
       </div>
-      <!-- Trigger the modal with a button -->
-          <button id="newChecklistButton" type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Add New Checklist</button>
-      <!-- Modal -->
-          <div class="modal" id="checklistModal" role="dialog">
-            <div class="modal-dialog">
-          <!-- Modal content-->
-              <div class="modal-content">
-                <div class="modal-header">
-                  <button type="button" class="close closechecklist" data-dismiss="modal">&times;</button>
-                  <h4 class="modal-title">New Checklist</h4>
-                </div>
-                <div class="modal-body">
-                  <form id="newChecklist">
-                    <div class="form-group">
-                      <label for="newChecklistTitle">Checklist title</label>
-                      <input type="text" class="form-control" id ="newChecklistTitle" placeholder="Checklist title" required>
-                      <h5> Priority:</h5>
-                      <div class="radio">
-                        <label>
-                          <input type="radio" name="priorityChecklist" value="low" checked>Low
-                        </label>
-                      </div>
-                      <div class="radio">
-                        <label>
-                          <input type="radio" name="priorityChecklist" value="medium">Medium
-                        </label>
-                      </div>
-                      <div class="radio">
-                        <label>
-                          <input type="radio" name="priorityChecklist" value="high">High
-                        </label>
-                      </div>
-                      <div class="form-group">
-                        <label for="newChecklistDescription">Checklist Items</label>
-                        <input id="newChecklistDescription" type="text" class="form-control" placeholder="Checklist Items, Separate by Commas" required>
-                      </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                  <button type="submit" class="btn">Save changes</button>
-                  </form>
-                </div>
-              </div>
+      <button id="newChecklistButton" type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Add New Checklist</button>
+      <div class="modal" id="checklistModal" role="dialog">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close closechecklist" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">New Checklist</h4>
             </div>
+            <div class="modal-body">
+              <form id="newChecklist">
+                <div class="form-group">
+                  <label for="newChecklistTitle">Checklist title</label>
+                  <input type="text" class="form-control" id ="newChecklistTitle" placeholder="Checklist title" required>
+                  <h5> Priority:</h5>
+                  <div class="radio">
+                    <label>
+                    <input type="radio" name="priorityChecklist" value="low" checked>Low
+                    </label>
+                  </div>
+                  <div class="radio">
+                    <label>
+                    <input type="radio" name="priorityChecklist" value="medium">Medium
+                    </label>
+                  </div>
+                  <div class="radio">
+                    <label>
+                    <input type="radio" name="priorityChecklist" value="high">High
+                    </label>
+                  </div>
+                  <div class="form-group">
+                    <label for="newChecklistDescription">Checklist Items</label>
+                    <input id="newChecklistDescription" type="text" class="form-control" placeholder="Checklist Items, Separate by Commas" required>
+                  </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+            <button type="submit" class="btn">Save changes</button>
+            </div>
+            </form>
           </div>
-      <!-- Sorting our notes -->
+        </div>
+      </div>
       <form id="sort-notes">
         <div class="form-group">
           <select class="form-control" id="sort-selection" onchange="sortNotes(this.value)">
