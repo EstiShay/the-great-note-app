@@ -5,12 +5,6 @@
   width: 250px;
   height: 150px;
 }
-.jumbotron {
-  text-align: center;
-  border-bottom: 4px solid #4f4630;
-  color: #a8a8a3;
-  background: inherit;
-}
 .modal {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
@@ -76,4 +70,11 @@ h4{
 textarea {
   height: 150px;
   width: 400px;
+}
+.jumbotron {
+  text-align: center;
+  border-bottom: 4px solid #4f4630;
+  background: inherit;
+  background-color: rgba(255,255,255, 0.5);
+  color: black;
 }
