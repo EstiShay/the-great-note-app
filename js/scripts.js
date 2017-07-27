@@ -32,6 +32,33 @@ function Note (noteTitle, noteText, noteType, noteColor) {
           appendCheckList(note);
         }
       });
+    } else if (val === "High") {
+      $(".wrapper").empty();
+      noteArray.forEach(function(note) {
+        if ((note.noteColor === '#f2bfcc') && (note.type === "note")) {
+          appendNotes(note);
+        } else if ((note.noteColor === '#f2bfcc') && (note.type === "checklist")) {
+          appendCheckList(note);
+        }
+      });
+    } else if (val === "Medium") {
+      $(".wrapper").empty();
+      noteArray.forEach(function(note) {
+        if ((note.noteColor === '#c9dfe8') && (note.type === "note")) {
+          appendNotes(note);
+        } else if ((note.noteColor === '#c9dfe8') && (note.type === "checklist")) {
+          appendCheckList(note);
+        }
+      });
+    } else if (val === "Low") {
+      $(".wrapper").empty();
+      noteArray.forEach(function(note) {
+        if ((note.noteColor === '#e2e1e0') && (note.type === "note")) {
+          appendNotes(note);
+        } else if ((note.noteColor === '#e2e1e0') && (note.type === "checklist")) {
+          appendCheckList(note);
+        }
+      });
     }
   }
  function appendNotes(note) {
