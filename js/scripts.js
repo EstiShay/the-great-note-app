@@ -19,9 +19,8 @@ function Note (noteTitle, noteText, noteType, noteColor) {
      noteArray.forEach(function(note) {
        if ((note.doneStatus === true) && (note.type === "note")) {
           appendNotes(note);
-      //  } else if ((note.doneStatus === true) && (note.type === "checklist")) {
-      //     debugger;
-      //     appendCheckList(note);
+       } else if ((note.doneStatus === true) && (note.type === "checklist")) {
+          appendCheckList(note);
        }
      });
    }
@@ -38,20 +37,20 @@ function Note (noteTitle, noteText, noteType, noteColor) {
        '</div>' +
      '</div>');
  }
- // function appendCheckList(checklist) {
- //   $(".wrapper").last().append('<div class="panel panel ' + checklist.id + '">' +
- //     '<div class="panel-heading">' +
- //     '<h3>' + checklist.noteTitle + '</h3>' +
- //         '</div>' +
- //     '<div class="panel-body">'
- //        );
- //   for (index=0; index < checklist.noteText.length; index += 1) {
- //      $(".panel-body").last().append('<input type="checkbox" name="" value="' + checklist.noteText[index] + '"> ' + checklist.noteText[index] + ' <br>');
- //   }
- //   $(".panel-body").last().append('<input id="' + checklist.id + '" class="btn done-button" type="button"  value="Archive">' +
- //       '</div>' +
- //     '</div>');
- // }
+ function appendCheckList(checklist) {
+   $(".wrapper").last().append('<div class="panel panel ' + checklist.id + '">' +
+     '<div class="panel-heading">' +
+     '<h3>' + checklist.noteTitle + '</h3>' +
+         '</div>' +
+     '<div class="panel-body">'
+        );
+   for (index=0; index < checklist.noteText.length; index += 1) {
+      $(".panel-body").last().append('<input type="checkbox" name="" value="' + checklist.noteText[index] + '"> ' + checklist.noteText[index] + ' <br>');
+   }
+   $(".panel-body").last().append('<input id="' + checklist.id + '" class="btn done-button" type="button"  value="Archive">' +
+       '</div>' +
+     '</div>');
+ }
 
 
 //UI Logic
@@ -84,32 +83,32 @@ $(function(){
   checklistSpan.onclick = function() {
     checklistModal.style.display = "none";
   }
-  function appendNotes(note) {
-    $(".wrapper").append('<div class="panel panel ' + note.id + '">' +
-    '<div class="panel-heading">' +
-      '<h3>' + note.noteTitle + '</h3>' +
-    '</div>' +
-    '<div class="panel-body">' +
-        '<h4>Note Details: </h4>' +
-          '<p>' + note.noteText + '</p>' +
-           '<input id="' + note.id + '" class="btn done-button" type="button"  value="Archive">' +
-        '</div>' +
-      '</div>');
-  }
-  function appendCheckList(checklist) {
-    $(".wrapper").append('<div class="panel panel ' + checklist.id + '">' +
-      '<div class="panel-heading">' +
-      '<h3>' + checklist.noteTitle + '</h3>' +
-          '</div>' +
-      '<div class="panel-body">'
-         );
-    for (index=0; index < checklist.noteText.length; index += 1) {
-       $(".panel-body").last().append('<input type="checkbox" name="" value="' + checklist.noteText[index] + '"> ' + checklist.noteText[index] + ' <br>');
-    }
-    $(".panel-body").last().append('<input id="' + checklist.id + '" class="btn done-button" type="button"  value="Archive">' +
-        '</div>' +
-      '</div>');
-  }
+  // function appendNotes(note) {
+  //   $(".wrapper").append('<div class="panel panel ' + note.id + '">' +
+  //   '<div class="panel-heading">' +
+  //     '<h3>' + note.noteTitle + '</h3>' +
+  //   '</div>' +
+  //   '<div class="panel-body">' +
+  //       '<h4>Note Details: </h4>' +
+  //         '<p>' + note.noteText + '</p>' +
+  //          '<input id="' + note.id + '" class="btn done-button" type="button"  value="Archive">' +
+  //       '</div>' +
+  //     '</div>');
+  // }
+  // function appendCheckList(checklist) {
+  //   $(".wrapper").append('<div class="panel panel ' + checklist.id + '">' +
+  //     '<div class="panel-heading">' +
+  //     '<h3>' + checklist.noteTitle + '</h3>' +
+  //         '</div>' +
+  //     '<div class="panel-body">'
+  //        );
+  //   for (index=0; index < checklist.noteText.length; index += 1) {
+  //      $(".panel-body").last().append('<input type="checkbox" name="" value="' + checklist.noteText[index] + '"> ' + checklist.noteText[index] + ' <br>');
+  //   }
+  //   $(".panel-body").last().append('<input id="' + checklist.id + '" class="btn done-button" type="button"  value="Archive">' +
+  //       '</div>' +
+  //     '</div>');
+  // }
   $("form#newNote").submit(function(event){
 
     var newNoteTitle = $("input#newNoteTitle").val();
@@ -149,9 +148,6 @@ $(function(){
   modal.style.display = "none";
 
   var sortInput = $("select#sort-selection").val();
-
-
-
 });
 $("form#newChecklist").submit(function(event) {
   event.preventDefault();
@@ -161,10 +157,20 @@ $("form#newChecklist").submit(function(event) {
   var newChecklist = new Note(newCheckListTitle, newCheckListText, newCheckType);
   newChecklist.id = noteArray.length;
   appendCheckList(newChecklist);
-  noteArray.push(newChecklist);
 
   $("input#newChecklistTitle").val('');
   $("input#newChecklistDescription").val('');
   checklistModal.style.display = "none";
- });
+
+    $(document).on("click", "input.done-button", function() {
+     var currentNoteId = $(this)[0].id;
+     noteArray.forEach(function(note) {
+       if (note.id == currentNoteId) {
+         note.changeStatus();
+         var noteClass = "." + currentNoteId;
+         $(noteClass).hide();
+       }
+     });
+   });
+  });
 });
