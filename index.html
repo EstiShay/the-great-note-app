@@ -90,6 +90,19 @@
               </div>
             </div>
           </div>
+      <!-- Sorting our notes -->
+      <form id="sort-notes">
+        <div class="form-group">
+          <select class="form-control" id="sort-selection" onchange="sortNotes(this.value)">
+            <option value="show">Show:</option>
+            <option value="High">High Priority</option>
+            <option value="Medium">Medium Priority</option>
+            <option value="Low">Low Priority</option>
+            <option value="done">Archived notes</option>
+            <option value="current">Show all current</option>
+          </select>
+        </div>
+      </form>
     </div>
   </body>
 </html>

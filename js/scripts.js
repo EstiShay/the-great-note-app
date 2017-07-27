@@ -12,11 +12,54 @@ function Note (noteTitle, noteText, noteType, noteColor) {
  Note.prototype.changeStatus = function() {
    this.doneStatus = true;
  }
+// Sort notes with dropdown menu
+ function sortNotes(val) {
+   if (val === "done") {
+     $(".wrapper").empty()
+     noteArray.forEach(function(note) {
+       if ((note.doneStatus === true) && (note.type === "note")) {
+          appendNotes(note);
+      //  } else if ((note.doneStatus === true) && (note.type === "checklist")) {
+      //     debugger;
+      //     appendCheckList(note);
+       }
+     });
+   }
+ }
+ function appendNotes(note) {
+   $(".wrapper").append('<div class="panel panel ' + note.id + '">' +
+   '<div class="panel-heading">' +
+     '<h3>' + note.noteTitle + '</h3>' +
+   '</div>' +
+   '<div class="panel-body">' +
+       '<h4>Note Details: </h4>' +
+         '<p>' + note.noteText + '</p>' +
+          '<input id="' + note.id + '" class="btn done-button" type="button"  value="Archive">' +
+       '</div>' +
+     '</div>');
+ }
+ // function appendCheckList(checklist) {
+ //   $(".wrapper").last().append('<div class="panel panel ' + checklist.id + '">' +
+ //     '<div class="panel-heading">' +
+ //     '<h3>' + checklist.noteTitle + '</h3>' +
+ //         '</div>' +
+ //     '<div class="panel-body">'
+ //        );
+ //   for (index=0; index < checklist.noteText.length; index += 1) {
+ //      $(".panel-body").last().append('<input type="checkbox" name="" value="' + checklist.noteText[index] + '"> ' + checklist.noteText[index] + ' <br>');
+ //   }
+ //   $(".panel-body").last().append('<input id="' + checklist.id + '" class="btn done-button" type="button"  value="Archive">' +
+ //       '</div>' +
+ //     '</div>');
+ // }
+
+
 //UI Logic
 $(function(){
   var modal = document.getElementById("myModal");
   var span = document.getElementsByClassName("closenotemodal")[0];
   var btn = document.getElementById("newNoteButton");
+
 
   btn.onclick = function() {
     modal.style.display = "block";
@@ -104,6 +147,11 @@ $(function(){
     event.preventDefault();
   });
   modal.style.display = "none";
+
+  var sortInput = $("select#sort-selection").val();
+
+
+
 });
 $("form#newChecklist").submit(function(event) {
   event.preventDefault();
