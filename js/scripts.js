@@ -119,32 +119,6 @@ $(function(){
   checklistSpan.onclick = function() {
     checklistModal.style.display = "none";
   }
-  // function appendNotes(note) {
-  //   $(".wrapper").append('<div class="panel panel ' + note.id + '">' +
-  //   '<div class="panel-heading">' +
-  //     '<h3>' + note.noteTitle + '</h3>' +
-  //   '</div>' +
-  //   '<div class="panel-body">' +
-  //       '<h4>Note Details: </h4>' +
-  //         '<p>' + note.noteText + '</p>' +
-  //          '<input id="' + note.id + '" class="btn done-button" type="button"  value="Archive">' +
-  //       '</div>' +
-  //     '</div>');
-  // }
-  // function appendCheckList(checklist) {
-  //   $(".wrapper").append('<div class="panel panel ' + checklist.id + '">' +
-  //     '<div class="panel-heading">' +
-  //     '<h3>' + checklist.noteTitle + '</h3>' +
-  //         '</div>' +
-  //     '<div class="panel-body">'
-  //        );
-  //   for (index=0; index < checklist.noteText.length; index += 1) {
-  //      $(".panel-body").last().append('<input type="checkbox" name="" value="' + checklist.noteText[index] + '"> ' + checklist.noteText[index] + ' <br>');
-  //   }
-  //   $(".panel-body").last().append('<input id="' + checklist.id + '" class="btn done-button" type="button"  value="Archive">' +
-  //       '</div>' +
-  //     '</div>');
-  // }
   $("form#newNote").submit(function(event){
 
     var newNoteTitle = $("input#newNoteTitle").val();
