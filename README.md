@@ -2,7 +2,7 @@
 
 #### Group project for Epicodus, July 2017
 
-#### By Esti Shay, Kate Mashokha, Collin Person, and Stephanie Mayer
+#### By Esti Shay, Kate Mashokha, and Stephanie Mayer
 
 ## Description
 
@@ -22,6 +22,7 @@ This program allows a user to create stickie notes on the screen.  There are are
 | Checklist note template | New Checklist, To Dos: Buy groceries, Do the laundry | To Dos:  <br>\[\] Buy groceries  <br>\[\] Do the laundry |
 | Mark notes done and hide | "Hello world" - Archive | Note not shown |
 | Rank note importance | To Dos, High | To Dos in a red panel |
+| Sort by importance or done status | Show: High Priority | Only To Dos display |
 
 
 ## Technologies Used
@@ -30,4 +31,4 @@ HTML, CSS, Bootstrap, JavaScript, jQuery
 
 ### License
 
-Copyright &copy; 2017 Esti Shay, Kate Mashokha, Collin Person, and Stephanie Mayer
+Copyright &copy; 2017 Esti Shay, Kate Mashokha, and Stephanie Mayer
