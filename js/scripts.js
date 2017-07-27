@@ -89,8 +89,7 @@ $(function(){
     newNote.id = noteArray.length;
 
     appendNotes(newNote);
-
-    document.getElementById(newNote.id).parentNode.style.background = noteColor;
+    document.getElementById(newNote.id).parentNode.parentNode.style.background = noteColor;
 
     $("input#newNoteTitle").val('');
     $("textarea#newNoteDescription").val('');
@@ -127,7 +126,7 @@ $("form#newChecklist").submit(function(event) {
   var newChecklist = new Note(newCheckListTitle, newCheckListText, newCheckType);
   newChecklist.id = noteArray.length;
   appendCheckList(newChecklist);
-  document.getElementById(newChecklist.id).parentNode.style.background = checklistColor;
+  document.getElementById(newChecklist.id).parentNode.parentNode.style.background = checklistColor;
   noteArray.push(newChecklist);
 
   $("input#newChecklistTitle").val('');
