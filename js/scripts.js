@@ -74,22 +74,19 @@ $(function(){
     var newType = "note";
     var notePriority = $("input:radio[name=priority]:checked").val();
     var noteColor;
-    if (notePriority === "low") {
-      noteColor = '#FEF65B';
+    if (notePriority === "medium") {
+      noteColor = '#c9dfe8';
     } else if (notePriority === "high") {
-      noteColor = '#f56560';
+      noteColor = '#f2bfcc';
+    } else {
+      noteColor = '#e2e1e0';
     }
-    else {
-      noteColor = '#91beae';
-    }
-
     var newNote = new Note(newNoteTitle, newNoteText, newType);
     newNote.id = noteArray.length;
 
     appendNotes(newNote);
 
     document.getElementById(newNote.id).parentNode.style.background = noteColor;
-
 
     $("input#newNoteTitle").val('');
     $("textarea#newNoteDescription").val('');
