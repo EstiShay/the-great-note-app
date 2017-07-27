@@ -1,12 +1,12 @@
 //Business Logic
 var noteArray = [];
-function Note (noteTitle, noteText, noteType) {
+function Note (noteTitle, noteText, noteType, noteColor) {
   this.noteTitle = noteTitle;
   this.noteText = noteText;
   this.type= noteType;
   this.doneStatus = false;
   this.id = "";
-  this.noteColor;
+  this.noteColor = noteColor;
   noteArray.push(this);
 }
  Note.prototype.changeStatus = function() {
@@ -85,7 +85,7 @@ $(function(){
     } else {
       noteColor = '#e2e1e0';
     }
-    var newNote = new Note(newNoteTitle, newNoteText, newType);
+    var newNote = new Note(newNoteTitle, newNoteText, newType, noteColor);
     newNote.id = noteArray.length;
 
     appendNotes(newNote);
